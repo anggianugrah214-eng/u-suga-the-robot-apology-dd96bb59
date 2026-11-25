@@ -30,6 +30,12 @@ TEXT = (
 
 
 def main() -> None:
+    # Self-check the competition gate before writing: the entry must be
+    # UTF-8 text of 1 to 400 characters, not only white space, in exactly
+    # two lines — one sentence owning the mistake, one naming the lesson.
+    lines = TEXT.split("\n")
+    assert len(lines) == 2 and all(line.strip() for line in lines)
+    assert 1 <= len(TEXT) <= 400
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(TEXT)
